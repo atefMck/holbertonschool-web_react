@@ -25,8 +25,7 @@ class Teacher implements TeacherInterface {
 type employee = Teacher | Director;
 
 const createEmployee = (salary: string | number): employee => {
-    if (typeof salary === "number" && salary < 500) return new Teacher()
-    else return new Director()
+    return (typeof salary === "number" && salary < 500) ? new Teacher() : new Director()
 }
 
 const isDirector = (employee: employee): boolean => {
@@ -36,4 +35,10 @@ const isDirector = (employee: employee): boolean => {
 const executeWork = (employee: employee): void => {
     if (employee instanceof Director) console.log(employee.workDirectorTasks())
     else console.log(employee.workTeacherTasks())
+}
+
+type Subjects = 'Math' | 'History';
+
+const teachClass = (todayClass: Subjects): string => {
+    return todayClass === 'Math' ? 'Teaching Math' : 'Teaching History'
 }
