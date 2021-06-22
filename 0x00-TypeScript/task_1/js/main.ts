@@ -27,10 +27,10 @@ interface StudentClassInterface {
 }
 
 interface StudentConstructor {
-    new(firstName: string, lastName: string): StudentClassInterface
+    new(firstName: string, lastName: string): StudentClassInterface;
 }
 
-const StudentClass: StudentConstructor = class StudentClass implements StudentClassInterface {
+export const StudentClass: StudentConstructor = class StudentClass implements StudentClassInterface {
     firstName: string;
     lastName: string;
 
