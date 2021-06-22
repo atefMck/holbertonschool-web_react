@@ -32,9 +32,9 @@ const isDirector = (employee: TeacherInterface | DirectorInterface): boolean => 
     return (employee instanceof Director)
 }
 
-const executeWork = (employee: DirectorInterface | TeacherInterface): void => {
-    if (employee instanceof Director) console.log(employee.workDirectorTasks())
-    else if ((employee instanceof Teacher)) console.log(employee.workTeacherTasks())
+const executeWork = (employee: DirectorInterface | TeacherInterface): string => {
+    if (employee instanceof Director) return employee.workDirectorTasks()
+    else if ((employee instanceof Teacher)) return employee.workTeacherTasks()
 }
 
 type Subjects = 'Math' | 'History';
