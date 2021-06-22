@@ -22,19 +22,19 @@ class Teacher implements TeacherInterface {
     workTeacherTasks(): string { return 'Getting to work' }
 }
 
-type employee = Teacher | Director;
 
-const createEmployee = (salary: string | number): employee => {
+
+const createEmployee = (salary: string | number): TeacherInterface | DirectorInterface => {
     return (typeof salary === "number" && salary < 500) ? new Teacher() : new Director()
 }
 
-const isDirector = (employee: employee): boolean => {
+const isDirector = (employee: TeacherInterface | DirectorInterface): boolean => {
     return (employee instanceof Director)
 }
 
-const executeWork = (employee: employee): void => {
+const executeWork = (employee: TeacherInterface | DirectorInterface): void => {
     if (employee instanceof Director) console.log(employee.workDirectorTasks())
-    else console.log(employee.workTeacherTasks())
+    else if ((employee instanceof Teacher)) console.log(employee.workTeacherTasks())
 }
 
 type Subjects = 'Math' | 'History';
