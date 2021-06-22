@@ -22,7 +22,13 @@ const studentTwo: Student = {
 const studentsList: Student[] = [studentOne, studentTwo];
 
 const table: HTMLTableElement = document.createElement('table');
-let i: number = 0;
+const tHeader: HTMLTableSectionElement = table.createTHead();
+const headerRow: HTMLTableRowElement = tHeader.insertRow(0);
+const headerCellOne: HTMLTableHeaderCellElement = headerRow.insertCell(0);
+headerCellOne.innerText = "firstName";
+const headerCellTwo: HTMLTableHeaderCellElement = headerRow.insertCell(1);
+headerCellTwo.innerText = "location";
+let i: number = 1;
 studentsList.forEach((student: Student): void => {
     const row: HTMLTableRowElement = table.insertRow(i);
     const firstName: HTMLTableCellElement = row.insertCell(0);
