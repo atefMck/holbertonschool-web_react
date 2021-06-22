@@ -24,10 +24,10 @@ const studentsList: Student[] = [studentOne, studentTwo];
 const table: HTMLTableElement = document.createElement('table');
 let i: number = 0;
 studentsList.forEach((student: Student): void => {
-    const row = table.insertRow(i);
-    const firstName = row.insertCell(0);
+    const row: HTMLTableRowElement = table.insertRow(i);
+    const firstName: HTMLTableCellElement = row.insertCell(0);
     firstName.innerText = student.firstName;
-    const location = row.insertCell(1);
+    const location: HTMLTableCellElement = row.insertCell(1);
     location.innerText = student.location;
     i += 1;
 })
