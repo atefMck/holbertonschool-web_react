@@ -21,4 +21,15 @@ const studentTwo: Student = {
 
 const studentsList: Student[] = [studentOne, studentTwo];
 
-studentsList.forEach((student: Student): void => console.table([student.firstName, student.location]))
+const table: HTMLTableElement = document.createElement('table');
+let i: number = 0;
+studentsList.forEach((student: Student): void => {
+    const row = table.insertRow(i);
+    const firstName = row.insertCell(0);
+    firstName.innerText = student.firstName;
+    const location = row.insertCell(1);
+    location.innerText = student.location;
+    i += 1;
+})
+
+document.body.appendChild(table);
