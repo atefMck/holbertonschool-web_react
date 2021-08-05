@@ -1,5 +1,4 @@
 body {
-  margin: 0;
   padding: 0;
 }
 
@@ -43,4 +42,8 @@ body {
 
 .App-footer p {
   margin: 0;
+}
+
+#password {
+  margin-left: 5px;
 }
