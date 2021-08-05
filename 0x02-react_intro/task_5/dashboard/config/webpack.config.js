@@ -27,7 +27,8 @@ module.exports = {
       },
 			{
 				test: /\.(png|svg|jpg|jpeg|gif)$/i,
-				type: 'asset/resource',
+        type: 'asset/resource',
+        loader: 'image-webpack-loader',
       },
       {
 				test: /\.(js|jsx)$/,
@@ -36,9 +37,6 @@ module.exports = {
 			}
 		],
   },
-  performance: {
-		maxAssetSize: 100000,
-	},
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     port: 8564,

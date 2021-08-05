@@ -1,6 +1,7 @@
-import React from 'react'
-import './Notifications.css'
-import { getLatestNotification } from './utils';
+import React from 'react';
+import './Notifications.css';
+import { getLatestNotification } from '../utils/utils';
+import closeIcon from '../assets/cancel.png';
 
 const buttonStyle = {
     position: 'absolute',
@@ -22,7 +23,7 @@ export default function Notifications() {
                 <li data-priority="urgent" dangerouslySetInnerHTML={{__html: getLatestNotification()}}></li>
             </ul>
             <button style={buttonStyle} aria-label="Close" onClick={() => console.log('Close button has been clicked')}>
-                <img src='./close-icon.png' alt='Close'></img>
+                <img src={closeIcon} alt='Close'></img>
             </button>
         </div>
     )
