@@ -6,7 +6,7 @@ import Login from '../Login/Login';
 import Notifications from '../Notifications/Notifications';
 import PropTypes from 'prop-types';
 import CourseList from '../CourseList/CourseList';
-import BodySectionWithMarginBottom from '../BodySectionWithMarginBottom/BodySectionWithMarginBottom';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import BodySection from '../BodySection/BodySection';
 import { getLatestNotification } from '../utils/utils';
 
