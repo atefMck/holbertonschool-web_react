@@ -6,6 +6,8 @@ import Login from '../Login/Login';
 import Notifications from '../Notifications/Notifications';
 import PropTypes from 'prop-types';
 import CourseList from '../CourseList/CourseList';
+import BodySectionWithMarginBottom from '../BodySectionWithMarginBottom/BodySectionWithMarginBottom';
+import BodySection from '../BodySection/BodySection';
 import { getLatestNotification } from '../utils/utils';
 
 const listCourses = [
@@ -51,7 +53,22 @@ class App extends React.Component {
         <Notifications listNotifications={listNotifications}/>
         <div className="App">
           <Header />
-          { this.state.isLoggedIn ? <CourseList listCourses={listCourses} /> : <Login /> }
+          { this.state.isLoggedIn ? (
+            <BodySectionWithMarginBottom title="Course list">
+              <CourseList listCourses={listCourses} />
+            </BodySectionWithMarginBottom>
+          ) : (
+            <BodySectionWithMarginBottom title="Log in to continue">
+              <Login />
+            </BodySectionWithMarginBottom>
+          )
+          }
+          <BodySection title="News from the school">
+            <p>
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti 
+            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
+            </p>
+          </BodySection>
           <Footer />
         </div>
       </React.Fragment>
