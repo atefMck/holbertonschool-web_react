@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
+import { StyleSheet, css} from 'aphrodite'
 
 class NotificationItem extends PureComponent {
     render() {
@@ -8,11 +9,13 @@ class NotificationItem extends PureComponent {
             <li 
                 dangerouslySetInnerHTML={{__html: html.__html}}
                 data-priority={type}
+                className={type === "default" ? css(styles.liDefault) : css(styles.liUrgent)}
                 onClick={() => {markAsRead(idx)}}>
             </li>
         ) : (
             <li 
                 data-priority={type}
+                className={type === "default" ? css(styles.liDefault) : css(styles.liUrgent)}
                 onClick={() => {markAsRead(idx)}}>
                 {value}
             </li>
@@ -33,5 +36,15 @@ NotificationItem.propTypes = {
 NotificationItem.defaultProps = {
     type: "default",
 }
+
+const styles = StyleSheet.create({
+    liDefault: {
+        color: "blue",
+    },
+    
+    liUrgent: {
+        color: "red",
+    },
+})
 
 export default NotificationItem;

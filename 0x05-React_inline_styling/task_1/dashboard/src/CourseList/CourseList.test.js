@@ -4,18 +4,15 @@ import { shallow } from 'enzyme';
 import CourseList from './CourseList';
 import { StyleSheetTestUtils } from 'aphrodite';
 
+StyleSheetTestUtils.suppressStyleInjection();
+
 describe("Testing the <CourseList /> Component", () => {
 	
 	let wrapper;
 
 	beforeEach(() => {
 		wrapper = shallow(<CourseList />);
-		StyleSheetTestUtils.suppressStyleInjection()
 	});
-
-	afterEach(() => {
-		StyleSheetTestUtils.clearBufferAndResumeStyleInjection()
-	})
 
 	it("<CourseList /> renders three NotificationItem", () => {
 		const listCourses = [

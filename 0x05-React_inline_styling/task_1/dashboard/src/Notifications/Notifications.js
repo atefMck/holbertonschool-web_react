@@ -1,18 +1,9 @@
 import React from 'react';
-import './Notifications.css';
 import closeIcon from '../assets/cancel.png';
 import NotificationItem from './NotificationItem';
 import PropTypes from 'prop-types';
 import NotificationItemShape from './NotificationItemShape';
-
-const buttonStyle = {
-    position: 'relative',
-    float: 'right',
-    backgroundColor: 'white',
-    border: 'none',
-    cursor: 'pointer',
-    fontSize: '1rem'
-}
+import { StyleSheet, css} from 'aphrodite'
 
 class Notifications extends React.Component {
 
@@ -36,23 +27,23 @@ class Notifications extends React.Component {
     render() {
         if (this.state.listNotifications.length === 0) {
             return (
-                <div className="NotificationContainer">
-                    <div className="menuItem">
+                <div className={css(styles.NotificationContainer)}>
+                    <div className={css(styles.menuItem)}>
                         <p>Your notifications</p>
                     </div>
-                    {this.state.displayDrawer && <div className="Notifications">
+                    {this.state.displayDrawer && <div className={css(styles.Notifications)}>
                         <p>No new notification for now</p>
                     </div>}
                 </div>
             )
         } else {
             return (
-                <div className="NotificationContainer">
-                    <div className="menuItem">
+                <div className={css(styles.NotificationContainer)}>
+                    <div className={css(styles.menuItem)}>
                         <p>Your notifications</p>
                     </div>
-                    { this.state.displayDrawer && <div className="Notifications">
-                        <button style={buttonStyle} aria-label="Close" onClick={() => console.log('Close button has been clicked')}>
+                    { this.state.displayDrawer && <div className={css(styles.Notifications)}>
+                        <button className={css(styles.buttonStyle)} aria-label="Close" onClick={() => console.log('Close button has been clicked')}>
                             <img src={closeIcon} alt='Close'></img>
                         </button>
                         <p>Here is the list of notifications</p>
@@ -82,5 +73,32 @@ Notifications.defaultProps = {
     displayDrawer: false,
     listNotifications: []
 }
+
+const styles = StyleSheet.create({
+    NotificationContainer: {
+        width: "fit-content",
+        position: "absolute",
+        right: "10px",
+    },
+    
+    menuItem: {
+        width: "fit-content",
+        marginLeft: "auto",
+    },
+    
+    Notifications: {
+        padding: "1rem",
+        border: "2px dotted #e0354b",
+    },
+
+    buttonStyle: {
+        position: 'relative',
+        float: 'right',
+        backgroundColor: 'white',
+        border: 'none',
+        cursor: 'pointer',
+        fontSize: '1rem'
+    },
+})
 
 export default Notifications;

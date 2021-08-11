@@ -2,6 +2,9 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import NotificationItem from './NotificationItem';
+import { StyleSheetTestUtils } from 'aphrodite';
+
+StyleSheetTestUtils.suppressStyleInjection();
 
 describe("Testing the <NotificationItem /> Component", () => {
 	
@@ -20,7 +23,7 @@ describe("Testing the <NotificationItem /> Component", () => {
 			html: undefined
 		}
 		wrapper = shallow(<NotificationItem idx={2} {...props}/>);
-		expect(wrapper.html()).equal(`<li data-priority="${props.type}">test</li>`);
+		expect(wrapper.html()).equal(`<li data-priority="${props.type}" class="liDefault_1tsdo2i">test</li>`);
     });
     
     it("<NotificationItem /> render the correct HTML, by passing dummy html props", () => {
@@ -29,7 +32,7 @@ describe("Testing the <NotificationItem /> Component", () => {
 			html: { __html: '<u>test</u>' }
 		}
 		wrapper = shallow(<NotificationItem idx={2} {...props}/>);
-		expect(wrapper.html()).equal(`<li data-priority="${props.type}"><u>test</u></li>`);
+		expect(wrapper.html()).equal(`<li data-priority="${props.type}" class="liDefault_1tsdo2i"><u>test</u></li>`);
 	});
 
 	it("Verify that when Clicking on the component, the 'markAsRead' is called with the right ID argument", () => {

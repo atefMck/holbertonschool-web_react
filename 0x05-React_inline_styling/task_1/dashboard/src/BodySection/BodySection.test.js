@@ -9,15 +9,9 @@ configure({
 	adapter: new Adapter()
 });
 
+StyleSheetTestUtils.suppressStyleInjection();
+
 describe("Testing the BodySection", () => {
-
-	beforeEach(() => {
-		StyleSheetTestUtils.suppressStyleInjection()
-	});
-
-	afterEach(() => {
-		StyleSheetTestUtils.clearBufferAndResumeStyleInjection()
-	})
 
 	it("Renders children correctly", () => {
 		const wrapper = shallow(

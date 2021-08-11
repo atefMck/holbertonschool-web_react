@@ -14,18 +14,15 @@ import 'jsdom-global/register'
 
 configure({adapter: new Adapter()});
 
+StyleSheetTestUtils.suppressStyleInjection();
+
 describe("Testing the <App /> Component", () => {
 	
 	let wrapper;
 
 	beforeEach(() => {
 		wrapper = shallow(<App />);
-		StyleSheetTestUtils.suppressStyleInjection()
 	});
-
-	afterEach(() => {
-		StyleSheetTestUtils.clearBufferAndResumeStyleInjection()
-	})
 
 	it("<App /> is rendered without crashing", () => {
 		expect(wrapper).to.not.be.an('undefined');

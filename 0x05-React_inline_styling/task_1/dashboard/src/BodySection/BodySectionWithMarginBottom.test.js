@@ -9,15 +9,9 @@ configure({
 	adapter: new Adapter()
 });
 
+StyleSheetTestUtils.suppressStyleInjection();
+
 describe("Testing the BodySectionWithMarginBottom", () => {
-
-	beforeEach(() => {
-		StyleSheetTestUtils.suppressStyleInjection()
-	});
-
-	afterEach(() => {
-		StyleSheetTestUtils.clearBufferAndResumeStyleInjection()
-	})
 
 	it("Renders BodySection Component correctly", () => {
 		const props = {
@@ -29,7 +23,7 @@ describe("Testing the BodySectionWithMarginBottom", () => {
 			<BodySectionWithMarginBottom {...props} />
 		);
 		
-		expect(wrapper.html()).to.equal('<div class="bodySectionWithMargin"><div class="bodySection"><h2>title</h2><p></p></div></div>');
+		expect(wrapper.html()).to.equal('<div class="margin_13jnc9w"><div class="bodySection"><h2>title</h2><p></p></div></div>');
 	});
 
 });

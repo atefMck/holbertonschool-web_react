@@ -3,6 +3,9 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import Notifications from './Notifications';
 import { getLatestNotification } from '../utils/utils';
+import { StyleSheetTestUtils } from 'aphrodite';
+
+StyleSheetTestUtils.suppressStyleInjection();
 
 describe("Testing the <Notifications /> Component", () => {
 	
@@ -38,25 +41,15 @@ describe("Testing the <Notifications /> Component", () => {
 			{id: 3, type: "urgent", __html: {__html: getLatestNotification()}},
 		]
 		wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications}/>);
-		expect(wrapper.find('ul').childAt(0).html()).to.equal('<li data-priority="default">New course available</li>');
+		expect(wrapper.find('ul').childAt(0).html()).to.equal('<li data-priority="default" class="liDefault_1tsdo2i">New course available</li>');
 	});
 	
 	it("<Notifications /> the menu item is being displayed when displayDrawer is false", () => {
-		expect(wrapper.find('div.menuItem')).to.have.length(1);
+		expect(wrapper.find('div')).to.have.length(2);
 	});
 	
 	it("<Notifications /> the div.Notifications is not being displayed when displayDrawer is false", () => {
-		expect(wrapper.find('div.Notifications')).to.have.length(0);
-	});
-	
-	it("<Notifications /> the div.Notifications is not being displayed when displayDrawer is false", () => {
-		const listNotifications = [
-			{id: 1, type: "default", value: "New course available"},
-			{id: 2, type: "urgent", value: "New resume available"},
-			{id: 3, type: "urgent", __html: {__html: getLatestNotification()}},
-		]
-		wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications}/>);
-		expect(wrapper.find('div.menuItem')).to.have.length(1);
+		expect(wrapper.find('div')).to.have.length(2);
 	});
 	
 	it("<Notifications /> the div.Notifications is not being displayed when displayDrawer is false", () => {
@@ -66,7 +59,17 @@ describe("Testing the <Notifications /> Component", () => {
 			{id: 3, type: "urgent", __html: {__html: getLatestNotification()}},
 		]
 		wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications}/>);
-		expect(wrapper.find('div.Notifications')).to.have.length(1);
+		expect(wrapper.find('div')).to.have.length(3);
+	});
+	
+	it("<Notifications /> the div.Notifications is not being displayed when displayDrawer is false", () => {
+		const listNotifications = [
+			{id: 1, type: "default", value: "New course available"},
+			{id: 2, type: "urgent", value: "New resume available"},
+			{id: 3, type: "urgent", __html: {__html: getLatestNotification()}},
+		]
+		wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications}/>);
+		expect(wrapper.find('div')).to.have.length(3);
 	});
 	
 	it("Notifications renders correctly if you pass an empty array or if you don’t pass the listNotifications property", () => {
