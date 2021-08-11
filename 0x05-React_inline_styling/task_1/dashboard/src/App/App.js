@@ -69,7 +69,7 @@ class App extends React.Component {
             atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
             </p>
           </BodySection>
-          <Footer />
+          <Footer className={css(styles.footer)}/>
         </div>
       </React.Fragment>
     )
@@ -98,6 +98,15 @@ const styles = StyleSheet.create({
 
   bodyHeight: {
     height: "70%",
+  },
+
+  footer: {
+    position: "absolute",
+    bottom: "0",
+    width: "100%",
+    borderTop: "3px solid var(--holberton-red) !important",
+    textAlign: "center",
+    padding: "16px 0",
   }
 });
 

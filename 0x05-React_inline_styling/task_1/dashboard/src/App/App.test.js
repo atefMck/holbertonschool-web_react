@@ -41,7 +41,7 @@ describe("Testing the <App /> Component", () => {
 	});
 
 	it("<App /> contains the <Footer /> Component", () => {
-		expect(wrapper.contains(<Footer />)).to.equal(true);
+		expect(wrapper.contains(<Footer className="footer_dc997y"/>)).to.equal(true);
 	});
 
 	it("<App /> does not contain the <CourseList /> Component", () => {
