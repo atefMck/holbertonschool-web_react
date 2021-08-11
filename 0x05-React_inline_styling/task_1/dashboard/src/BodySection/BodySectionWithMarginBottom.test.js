@@ -3,13 +3,21 @@ import { expect } from 'chai';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure, mount, } from 'enzyme';
 import BodySectionWithMarginBottom from './BodySectionWithMarginBottom.js';
-import BodySection from './BodySection.js';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 configure({
 	adapter: new Adapter()
 });
 
 describe("Testing the BodySectionWithMarginBottom", () => {
+
+	beforeEach(() => {
+		StyleSheetTestUtils.suppressStyleInjection()
+	});
+
+	afterEach(() => {
+		StyleSheetTestUtils.clearBufferAndResumeStyleInjection()
+	})
 
 	it("Renders BodySection Component correctly", () => {
 		const props = {

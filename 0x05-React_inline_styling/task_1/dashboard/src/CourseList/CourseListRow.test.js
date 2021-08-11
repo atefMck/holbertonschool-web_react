@@ -2,10 +2,19 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import CourseListRow from './CourseListRow';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 describe("Testing the <CourseListRow /> Component", () => {
 	
     let wrapper;
+
+    beforeEach(() => {
+		StyleSheetTestUtils.suppressStyleInjection()
+	});
+
+	afterEach(() => {
+		StyleSheetTestUtils.clearBufferAndResumeStyleInjection()
+	})
     
 	it("renders one cell with colspan = 2 when textSecondCell does not exist", () => {
         const props = {
@@ -14,7 +23,7 @@ describe("Testing the <CourseListRow /> Component", () => {
             textSecondCell: null
         }
         wrapper = shallow(<CourseListRow shouldRender {...props} />);
-		expect(wrapper.html()).to.equal(`<tr style="background-color:#deb5b545"><th colSpan="2">${props.textFirstCell}</th></tr>`);
+		expect(wrapper.html()).to.equal(`<tr class="tableHeaderRow_8jrfb0"><th colSpan="2">${props.textFirstCell}</th></tr>`);
     });
     
     it("renders two cells when textSecondCell is present", () => {
@@ -24,7 +33,7 @@ describe("Testing the <CourseListRow /> Component", () => {
             textSecondCell: "test2"
         }
         wrapper = shallow(<CourseListRow shouldRender {...props} />);
-        expect(wrapper.html()).to.equal(`<tr style="background-color:#deb5b545"><th>${props.textFirstCell}</th><th>${props.textSecondCell}</th></tr>`);
+        expect(wrapper.html()).to.equal(`<tr class="tableHeaderRow_8jrfb0"><th>${props.textFirstCell}</th><th>${props.textSecondCell}</th></tr>`);
     });
     
     it("renders correctly two td elements within a tr element", () => {
@@ -34,7 +43,7 @@ describe("Testing the <CourseListRow /> Component", () => {
             textSecondCell: "test2"
         }
         wrapper = shallow(<CourseListRow shouldRender {...props} />);
-        expect(wrapper.html()).to.equal(`<tr style="background-color:#f5f5f5ab"><td>${props.textFirstCell}</td><td>${props.textSecondCell}</td></tr>`);
+        expect(wrapper.html()).to.equal(`<tr class="tableRow_y7r86x"><td>${props.textFirstCell}</td><td>${props.textSecondCell}</td></tr>`);
 	});
 
 });

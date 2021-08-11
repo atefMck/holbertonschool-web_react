@@ -2,6 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import CourseList from './CourseList';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 describe("Testing the <CourseList /> Component", () => {
 	
@@ -9,11 +10,12 @@ describe("Testing the <CourseList /> Component", () => {
 
 	beforeEach(() => {
 		wrapper = shallow(<CourseList />);
+		StyleSheetTestUtils.suppressStyleInjection()
 	});
 
-	it("<CourseList /> is rendered without crashing", () => {
-		expect(wrapper).to.not.be.an('undefined');
-	});
+	afterEach(() => {
+		StyleSheetTestUtils.clearBufferAndResumeStyleInjection()
+	})
 
 	it("<CourseList /> renders three NotificationItem", () => {
 		const listCourses = [
