@@ -30,7 +30,7 @@ class App extends React.Component {
     }
     this.logOut = props.logOut;
   }
-
+  
   handleKeyDown(e) {
     if (e.ctrlKey && e.code == "KeyH") {
       e.preventDefault()
@@ -38,76 +38,87 @@ class App extends React.Component {
       this.logOut();
     }
   }
-
+  
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeyDown);
   }
-
+  
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyDown);
   }
-
+  
   render() {
     return (
       <React.Fragment>
-        <Notifications listNotifications={listNotifications}/>
-        <div className={css(styles.flexFullHeight)}>
-          <Header />
-          { this.state.isLoggedIn ? (
-            <BodySectionWithMarginBottom title="Course list">
-              <CourseList listCourses={listCourses} className={css(styles.bodyHeight)}/>
-            </BodySectionWithMarginBottom>
-          ) : (
-            <BodySectionWithMarginBottom title="Log in to continue">
-              <Login />
-            </BodySectionWithMarginBottom>
+      <Notifications listNotifications={listNotifications}/>
+      <div className={css(styles.flexFullHeight)}>
+      <Header className={css(styles.appHeader)}/>
+      { this.state.isLoggedIn ? (
+        <BodySectionWithMarginBottom title="Course list">
+        <CourseList listCourses={listCourses} className={css(styles.bodyHeight)}/>
+        </BodySectionWithMarginBottom>
+        ) : (
+          <BodySectionWithMarginBottom title="Log in to continue">
+          <Login />
+          </BodySectionWithMarginBottom>
           )
-          }
-          <BodySection title="News from the school">
-            <p>
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti 
-            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-            </p>
-          </BodySection>
-          <Footer className={css(styles.footer)}/>
+        }
+        <BodySection title="News from the school">
+        <p>
+        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti 
+        atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
+        </p>
+        </BodySection>
+        <Footer className={css(styles.footer)}/>
         </div>
-      </React.Fragment>
-    )
-  }
-}
-
-
-App.propTypes = {
-  isLoggedIn: PropTypes.bool,
-  logOut: PropTypes.func
-}
-
-App.defaultProps = {
-  isLoggedIn: false,
-  logOut: () => {
-    return
-  }
-}
-
-const styles = StyleSheet.create({
-  flexFullHeight: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100vh",
-  },
-
-  bodyHeight: {
-    height: "70%",
-  },
-
-  footer: {
-    position: "absolute",
-    bottom: "0",
-    width: "100%",
-    borderTop: "3px solid var(--holberton-red) !important",
-    textAlign: "center",
-    padding: "16px 0",
-  }
-});
-
-export default App;
+        </React.Fragment>
+        )
+      }
+    }
+    
+    
+    App.propTypes = {
+      isLoggedIn: PropTypes.bool,
+      logOut: PropTypes.func
+    }
+    
+    App.defaultProps = {
+      isLoggedIn: false,
+      logOut: () => {
+        return
+      }
+    }
+    
+    const styles = StyleSheet.create({
+      flexFullHeight: {
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+      },
+      
+      bodyHeight: {
+        height: "70%",
+      },
+      
+      appHeader: {
+        display: "flex",
+        alignItems: "center",
+        borderBottom: "3px solid #e0354b",
+        color: "#e0354b",
+        fontSize: "1.5rem",
+        fontWeight: "bold",
+        height: "25%",
+      },
+      
+      footer: {
+        position: "absolute",
+        bottom: "0",
+        width: "100%",
+        borderTop: "3px solid var(--holberton-red) !important",
+        textAlign: "center",
+        padding: "16px 0",
+      }
+    });
+    
+    
+    export default App;

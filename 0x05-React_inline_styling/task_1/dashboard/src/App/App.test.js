@@ -33,7 +33,7 @@ describe("Testing the <App /> Component", () => {
 	});
 
 	it("<App /> contains the <Header /> Component", () => {
-		expect(wrapper.contains(<Header />)).to.equal(true);
+		expect(wrapper.contains(<Header className="appHeader_haetb5"/>)).to.equal(true);
 	});
 
 	it("<App /> contains the <Login /> Component", () => {
