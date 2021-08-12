@@ -91,61 +91,44 @@ describe("Testing the <Notifications /> Component", () => {
 		wrapper = shallow(<Notifications displayDrawer={true}/>);
 		expect(wrapper.contains(<p>No new notification for now</p>)).to.equal(true);
 	});
-	
-	it("Verify that when calling the function 'markAsRead' on a component instance, it's being called with the right message", () => {
-		const log = jest.spyOn(console, 'log');
-		const listNotifications = [
-			{id: 1, type: "default", value: "New course available"},
-			{id: 2, type: "urgent", value: "New resume available"},
-			{id: 3, type: "urgent", __html: {__html: getLatestNotification()}},
-		]
-		wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications}/>);
-		wrapper.instance().markAsRead(9);
-		expect(log.mock.calls[0][0]).equal("Notification 9 has been marked as read");
-		log.mockRestore();
-	});
-	
-});
 
-describe('updating the props of the component', () => {
-	it('with the same list, the component doesn’t rerender', () => {
+	it("Verify that clicking on the menu item calls handleDisplayDrawer", () => {
+		const mockDisplay = jest.fn(() => {});
+		const mockHide = jest.fn(() => {});
+		
+		const props = {
+			displayDrawer: false,
+			handleDisplayDrawer: mockDisplay,
+			handleHideDrawer: mockHide,
+		};
+
+		wrapper = shallow(<Notifications {...props} />);
+
+		wrapper.find('.menuItem_1nwbcum p').at(0).simulate('click');
+
+		expect(mockDisplay.mock.calls.length).to.equal(1);
+	});
+
+	it("Verify that clicking on the button calls handleHideDrawer", () => {
+		const mockDisplay = jest.fn(() => {});
+		const mockHide = jest.fn(() => {});
+
 		const listNotifications = [
 			{ id: 1, type: 'default', value: 'New course available' },
 			{ id: 2, type: 'urgent', value: 'New resume available' },
 		];
-		const nextState = {
+		const props = {
+			listNotifications: listNotifications,
 			displayDrawer: true,
-			listNotifications
-		}
-		const wrapper = shallow(
-			<Notifications displayDrawer={true} listNotifications={listNotifications} />
-			);
-			const shouldUpdate = wrapper.instance().shouldComponentUpdate({}, nextState)
-			expect(shouldUpdate).to.equal(false)
-			jest.restoreAllMocks();
-		});
-		
-		it('with a longer list, the component does rerender', () => {
-			const listNotifications = [
-				{ id: 1, type: 'default', value: 'New course available' },
-				{ id: 2, type: 'urgent', value: 'New resume available' },
-			];
-			const listNotifications2 = [
-				{ id: 1, type: 'default', value: 'New course available' },
-				{ id: 2, type: 'urgent', value: 'New resume available' },
-				{ id: 1, type: 'default', value: 'New course available' },
-				{ id: 2, type: 'urgent', value: 'New resume available' }
-			];
-			const nextState = {
-				displayDrawer: true,
-				listNotifications: listNotifications2
-			}
-			const wrapper = shallow(
-				<Notifications displayDrawer={true} listNotifications={listNotifications} />
-			);
-			const shouldUpdate = wrapper.instance().shouldComponentUpdate({}, nextState)
-			expect(shouldUpdate).to.equal(true)
-			jest.restoreAllMocks();
-		});
+			handleDisplayDrawer: mockDisplay,
+			handleHideDrawer: mockHide,
+		};
+
+		wrapper = shallow(<Notifications {...props} />);
+
+		wrapper.find('button').at(0).simulate('click');
+
+		expect(mockHide.mock.calls.length).to.equal(1);
 	});
 	
+});
